@@ -4,7 +4,7 @@ import { v4 } from 'uuid';
 function TodoForm({ addTodo }) {
     const [todo, setTodo] = useState({
         id: '', task: ''
-    })
+    });
 
     //event target value will contain the new input from user.
     const handleTaskInputChange = e => setTodo({ ...todo, task: e.target.value });

@@ -4,7 +4,6 @@ function Todo({ todo, deleteTodo, updateTodo }) {
     const [isEdit, setIsEdit] = useState(false);
     const [todoValue, setTodoValue] = useState(todo);
 
-
     return (
         <div className="task-item" style={{ display: 'flex', justifyContent: 'center', margin: 10 }}>
             <div className="task-content-value">
