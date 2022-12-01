@@ -7,6 +7,7 @@ function TodoList() {
     //it'll return the state of all slices, therefore we have to specify state.todos
     const todoList = useSelector((state) => state.todos);
     console.log(todoList);
+
     return (
         <div className="tasks-list">
             {/* when rendering a jsx element from array map, we need a unique key attached to each item */}

@@ -12,7 +12,6 @@ function TodoForm() {
     const handleSubmit = e => {
         e.preventDefault();
         if (taskContent.trim()) {
-            console.log(taskContent);
             dispatch(
                 addTodo(taskContent)
             );

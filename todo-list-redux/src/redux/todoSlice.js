@@ -20,7 +20,7 @@ const todoSlice = createSlice({
             //the state is the current state.
             //anytime we call addTodo action, this is the reducer that'll handle that action.
             const newTodo = {
-                id: 5,
+                id: Date.now(),
                 content: action.payload,
                 isCompleted: false,
             };
@@ -30,15 +30,25 @@ const todoSlice = createSlice({
             //And then goes to update our UI components which are subscribed to the same.
         },
         deleteTodo: (state, action) => {
-            //TODO
-            state = state.filter(t => t.id !== action.payload);
+            const index = state.findIndex(todo => todo.id === action.payload);
+            state.splice(index, 1);
+        },
+        updateTodo: (state, action) => {
+            const updateData = action.payload;
+            const index = state.findIndex(todo => todo.id === updateData.id);
+            state[index].content = updateData.content;
+        },
+        updateTodoCompleted: (state, action) => {
+            const { id, isCompleted } = action.payload;
+            const index = state.findIndex(todo => todo.id === id);
+            state[index].isCompleted = isCompleted;
         }
 
     },
 });
 
 // Action creators are generated for each case reducer function
-export const { addTodo, deleteTodo } = todoSlice.actions;
+export const { addTodo, deleteTodo, updateTodo, updateTodoCompleted } = todoSlice.actions;
 
 //Will be added to the store.
 export default todoSlice.reducer;
