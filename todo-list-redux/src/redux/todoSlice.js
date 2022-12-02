@@ -1,7 +1,7 @@
 
 // A slice is piece of code we write to store a slice/piece of data and all the thing required to update, retrieve that data.
 
-import { createSlice } from "@reduxjs/toolkit";
+import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 
 const initialTodoListState = [
     { id: 1, content: 'Todo 1', isCompleted: false, },
@@ -9,6 +9,17 @@ const initialTodoListState = [
     { id: 3, content: 'Todo 3', isCompleted: false, },
 ];
 
+//this is the new action thunk that we'll dispatch from our component, which inturn will dispatch it's own action with the 
+//completed response as the action payload to the reducer.
+export const getTodosAsync = createAsyncThunk('todos/getTodosAsync',
+    async () => {
+        const res = await fetch('http://localhost:3001/todos');
+        if (res.ok) {
+            const todos = await res.json()
+            return { todos }; //this will be the payload of the action dispatched by the thunk.
+        }
+    }
+);
 
 //createSlice will create actions based on our reducer names.
 const todoSlice = createSlice({
@@ -45,6 +56,15 @@ const todoSlice = createSlice({
         }
 
     },
+    extraReducers: {
+        //when the thunk dipatches a 'fulfilled' action, i.e. the api call is completed.
+        [getTodosAsync.fulfilled]: (state, action) => {
+            return action.payload.todos;
+        },
+        [getTodosAsync.pending]: (state, action) => {
+            console.log('Loading todolist values');
+        }
+    }
 });
 
 // Action creators are generated for each case reducer function

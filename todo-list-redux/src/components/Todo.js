@@ -7,8 +7,8 @@ function Todo({ todo }) {
     const [todoValue, setTodoValue] = useState(todo);
 
     // TODO: check later(props passed is true, ut useState returns false)
-    console.log('VALUE PASSED: ', todo);
-    console.log('VALUE: ', todoValue);
+    // console.log('VALUE PASSED: ', todo);
+    // console.log('VALUE: ', todoValue);
 
     const dispatch = useDispatch();
 
