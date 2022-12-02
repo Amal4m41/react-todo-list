@@ -49,11 +49,12 @@ app.patch('/todos/:id', (req, res) => {
     console.log(req.body);
     const id = req.params.id;
     const index = todos.findIndex((todo) => todo.id == id);
-    const isCompleted = Boolean(req.body.isCompleted);
+    const isCompleted = req.body.isCompleted;
     const content = req.body.content;
     if (index > -1) {
         if (isCompleted != null)
             todos[index].isCompleted = isCompleted;
+
 
         if (content != null)
             todos[index].content = content;

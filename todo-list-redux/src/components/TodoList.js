@@ -10,8 +10,7 @@ function TodoList() {
     //to run the first time the component is mounted.
     useEffect(() => {
         dispatch(getTodosAsync())
-    },
-        [])
+    }, [dispatch])
 
     //the state passed as argument is the state of the entire store, if we have multiple slices...
     //it'll return the state of all slices, therefore we have to specify state.todos
