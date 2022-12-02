@@ -2,7 +2,7 @@
 // A slice is piece of code we write to store a slice/piece of data and all the thing required to update, retrieve that data.
 
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-import TodoApi from "../Api/todoApi";
+import TodoApi from "../api/todoApi";
 
 
 //this is the new action thunk that we'll dispatch from our component, which inturn will dispatch it's own action with the 
