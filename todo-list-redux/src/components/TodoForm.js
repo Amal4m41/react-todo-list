@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { useDispatch } from 'react-redux';
-import { addTodo } from '../redux/todoSlice';
+import { addTodoAsync } from '../redux/todoSlice';
 
 function TodoForm() {
     const [taskContent, setTaskContent] = useState('');
@@ -13,7 +13,8 @@ function TodoForm() {
         e.preventDefault();
         if (taskContent.trim()) {
             dispatch(
-                addTodo(taskContent)
+                // addTodo(taskContent)
+                addTodoAsync(taskContent)
             );
             setTaskContent(''); //reset task
         }

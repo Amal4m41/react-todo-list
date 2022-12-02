@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useDispatch } from "react-redux";
-import { deleteTodo, updateTodo, updateTodoCompleted } from "../redux/todoSlice";
+import { deleteTodoAsync, updateTodoAsync } from "../redux/todoSlice";
 
 function Todo({ todo }) {
     const [isEdit, setIsEdit] = useState(false);
@@ -20,7 +20,7 @@ function Todo({ todo }) {
                 return;
             }
             dispatch(
-                updateTodo({
+                updateTodoAsync({
                     id: todoValue.id,
                     content: todoValue.content,
                 })
@@ -33,7 +33,7 @@ function Todo({ todo }) {
         <div className="task-item" style={{ display: 'flex', justifyContent: 'center', margin: 10 }}>
             <input type="checkbox" className="task-checkbox"
                 checked={todo.isCompleted}
-                onChange={e => dispatch(updateTodoCompleted({ id: todoValue.id, isCompleted: !todo.isCompleted }))} />
+                onChange={e => dispatch(updateTodoAsync({ id: todoValue.id, isCompleted: !todo.isCompleted }))} />
             <div className="task-content-value">
                 <input type="text" className="input-task-content"
                     onChange={(e) => setTodoValue({ ...todoValue, content: e.target.value })}
@@ -45,7 +45,7 @@ function Todo({ todo }) {
                 </button>
                 <button className="delete" onClick={(e) => {
                     dispatch(
-                        deleteTodo(todoValue.id)
+                        deleteTodoAsync({ id: todoValue.id })
                     );
                 }} >Delete</button>
             </div>
